@@ -8,7 +8,7 @@ def talker():
 
     """
     pub = rospy.Publisher('chatter',String,queue_size=10)
-    ropy.init_node('talker', anonymous=False)
+    rospy.init_node('talker', anonymous=False)
     rate = rospy.Rate(10) # 10Hz
 
     while not rospy.is_shutdown():
