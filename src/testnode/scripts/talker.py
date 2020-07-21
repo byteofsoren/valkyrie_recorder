@@ -2,7 +2,7 @@
 import rospy
 from std_msgs.msg import String
 
-def tarker():
+def talker():
     """Tarker function
     :returns: TODO
 
@@ -20,6 +20,6 @@ def tarker():
 
 if __name__ == "__main__":
     try:
-        talker
+       talker()
     except rospy.ROSException as e:
         raise e
