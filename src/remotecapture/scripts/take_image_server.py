@@ -27,7 +27,7 @@ def handle_capture_img(req):
             # rospy.loginfo(f'type(cvimage)={type(cvimage)}\ncmimage={cvimage}')
             rospy.loginfo("converting image to ros_image")
             ros_image = bridge.cv2_to_imgmsg(np.array(cvimage))
-            rospy.loginfo("DONE!")
+            # rospy.loginfo("DONE!")
             tafter = rospy.Time.now()
             return capture_imgResponse(tafter,ros_image)
         else:
