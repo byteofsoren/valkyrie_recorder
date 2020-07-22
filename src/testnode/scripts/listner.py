@@ -10,10 +10,12 @@ def callback(data:String):
     :returns: TODO
 
     """
-    rospy.loginfo(f'{rospy.get_caller_id()} I hered {data.data}')
+    # rospy.loginfo(f'{rospy.get_caller_id()} I hered {data.data}')
+    rospy.loginfo("test")
+    rospy.loginfo(data.data)
 
 
-def listner(arg1):
+def listner():
     """ The listren of the messages
 
     :arg1: TODO
@@ -21,7 +23,9 @@ def listner(arg1):
 
     """
     rospy.init_node('listner')
-    rospy.Subscriber("chatter",String,callback)
+    rospy.loginfo("Subscriber to chatter")
+    rospy.Subscriber("chatter", String, callback)
+    rospy.loginfo("spin")
     rospy.spin()
 
 

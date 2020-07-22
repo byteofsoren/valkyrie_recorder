@@ -14,7 +14,7 @@ def talker():
     while not rospy.is_shutdown():
         hello_str = f'Hello time={rospy.get_time()}'
         rospy.loginfo(hello_str)
-        pub.publish(hello_str)
+        pub.publish("test")
         rate.sleep()
 
 
