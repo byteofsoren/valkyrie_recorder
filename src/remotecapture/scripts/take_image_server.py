@@ -43,7 +43,7 @@ def video_sender_node():
     :returns: TODO
 
     """
-    pub = rospy.Publisher('video',video)
+    pub = rospy.Publisher('video',video, queue_size=1)
     r = rospy.Rate(10)
     msg = video
     while not rospy.is_shutdown():
