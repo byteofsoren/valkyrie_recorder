@@ -3,6 +3,7 @@
 import cv2
 import numpy as np
 from remotecapture.srv import capture_img, capture_imgResponse
+from remotecapture.msg import video
 import rospy
 from cv_bridge import CvBridge, CvBridgeError
 
@@ -37,11 +38,25 @@ def handle_capture_img(req):
         raise e
 
 
+def video_sender_node():
+    """Sends a video stream over the network
+    :returns: TODO
+
+    """
+    pub = rospy.Publisher('video',video)
+    r = rospy.Rate(10)
+    msg = video
+    while not rospy.is_shutdown():
+        worked, cvimage = camera.read()
+        if worked:
+            msg.time=rospy.Time.now()
+            rospy.loginfo_once("Sent frame of video")
+            msg.video = bridge.cv2_to_imgmsg(np.array(cvimage))
+            pub.publish(msg)
+        r.sleep()
 
 
 
-
-    pass
 
 def main():
     """The setup function in the take_image.py
@@ -51,7 +66,9 @@ def main():
     rospy.init_node('remotecapture_node')
     serv = rospy.Service("capture_img",capture_img,handle_capture_img)
     rospy.loginfo("Service capture_img is ready for use!")
-    rospy.spin()
+    rospy.loginfo("Starting the video sender node")
+    video_sender_node()
+    rospy.loginfo("Exit")
 
 
 if __name__ == "__main__":
