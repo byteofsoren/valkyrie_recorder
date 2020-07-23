@@ -45,13 +45,14 @@ def video_sender_node():
     """
     pub = rospy.Publisher('video',video, queue_size=1)
     r = rospy.Rate(10)
-    msg = video
     while not rospy.is_shutdown():
+        msg = video
         worked, cvimage = camera.read()
         if worked:
             msg.time=rospy.Time.now()
             rospy.loginfo_once("Sent frame of video")
             msg.video = bridge.cv2_to_imgmsg(np.array(cvimage))
+            rospy.loginfo(f'Sending time={msg.time} with the image={msg.video}')
             pub.publish(msg)
         r.sleep()
 
@@ -60,7 +61,7 @@ def video_sender_node():
 
 def main():
     """The setup function in the take_image.py
-    :returns: TODO
+    :returns: Nothing
 
     """
     rospy.init_node('remotecapture_node')
