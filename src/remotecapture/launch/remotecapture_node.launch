@@ -1,0 +1,6 @@
+<launch>
+    <!-- Add <arg ...>'s -->
+    <!-- Add <param >'s -->
+    <!-- Add <node >'s -->
+    <node name="remotecapture_node" pkg="remotecapture" type="remotecapture_node"  />
+</launch>

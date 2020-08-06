@@ -1,0 +1,5 @@
+<launch>
+    <rosparam file="$(find userinterface)/config/camera_params.yaml" />
+    <node name="terminal_node" pkg="userinterface" type="terminal.py" output="screen" />
+</launch>
+
