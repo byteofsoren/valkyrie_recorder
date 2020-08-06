@@ -3,6 +3,7 @@ import rospy
 import cv2
 import numpy as np
 import yaml
+import os
 from pathlib import Path
 # from remotecapture.msg import video
 from sensor_msgs.msg import CameraInfo, Image
@@ -24,7 +25,7 @@ class imgRecorder(object):
     _color_counter_min = 0
     _color_counter_max = 142
     _color_not_accepted=None
-    _path = '/home/ros/repos/valkyrie_data/'
+    _path = f'{os.environ['HOME']}/repos/valkyrie_data/'
     _camera_matrix = None
     _rec:bool=True
 
